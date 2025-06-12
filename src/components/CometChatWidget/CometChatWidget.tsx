@@ -30,11 +30,15 @@ const CometChatWidget = () => {
  
     if (uiKitSettings != null) {
       CometChatUIKit.init(uiKitSettings)?.then(() => {
+      console.log("CometChat UI Kit initialized successfully.");
+      
             if(!uid){
                 return;
             }
           CometChatUIKit.login(uid)
             .then(() => {
+
+                console.log("CometChat UI Kit initialized and user logged in successfully.");
               setIsReady(true);
             })
             .catch((err) => setError("Login failed: " + (err?.message || err)));

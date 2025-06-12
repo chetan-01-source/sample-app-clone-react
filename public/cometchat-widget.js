@@ -41,6 +41,8 @@
   iframe.style.display = "none";
 
   const query = new URLSearchParams({ appId, region, authKey, uid }).toString();
+
+  console.log("query params found",query)
   iframe.src = `https://sample-app-clone-react-hhb2atqsn-chetan-01-sources-projects.vercel.app/widget?${query}`;
   document.body.appendChild(iframe);
 
