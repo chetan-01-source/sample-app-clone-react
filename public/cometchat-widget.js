@@ -1,4 +1,16 @@
 (function () {
+  const settings = window.CometChatWidgetSettings || {};
+
+  const appId = settings.appId || "";
+  const region = settings.region || "";
+  const authKey = settings.authKey || "";
+  const uid = settings.uid || "";
+
+  if (!appId || !region || !authKey || !uid) {
+    console.error("CometChat Widget: Missing configuration!");
+    return;
+  }
+
   const launcher = document.createElement("div");
   launcher.id = "cometchat-launcher";
   launcher.innerText = "💬 Chat";
@@ -12,7 +24,7 @@
   launcher.style.cursor = "pointer";
   launcher.style.fontFamily = "sans-serif";
   launcher.style.fontSize = "16px";
-  launcher.style.zIndex = "9999";
+  launcher.style.zIndex = "999999";
   document.body.appendChild(launcher);
 
   const iframe = document.createElement("iframe");
@@ -25,14 +37,8 @@
   iframe.style.border = "none";
   iframe.style.borderRadius = "12px";
   iframe.style.boxShadow = "0 4px 20px rgba(0,0,0,0.2)";
-  iframe.style.zIndex = "9998";
+  iframe.style.zIndex = "999998";
   iframe.style.display = "none";
-
-  // Load your deployed widget inside iframe
-  const appId = "271964da8b8ba220";
-  const region = "in";
-  const authKey = "579aa42c6af39517baac0babcd539c5f56bfd04c";
-  const uid = "uid1"; // Optional: You can dynamically replace this
 
   const query = new URLSearchParams({ appId, region, authKey, uid }).toString();
   iframe.src = `https://sample-app-clone-react-hhb2atqsn-chetan-01-sources-projects.vercel.app/widget?${query}`;
