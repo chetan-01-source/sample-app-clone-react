@@ -1,4 +1,6 @@
 (function () {
+
+    console.log("✅ cometchat-widget.js loaded");
   const settings = window.CometChatWidgetSettings || {};
 
   const appId = settings.appId || "";
