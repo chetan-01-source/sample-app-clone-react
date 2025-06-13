@@ -52,7 +52,7 @@
 
   // Append URL params to iframe src
   const query = new URLSearchParams({ appId, region, authKey, uid }).toString();
-  iframe.src = `https://sample-app-clone-react-hhb2atqsn-chetan-01-sources-projects.vercel.app//widget?${query}`;
+  iframe.src = `https://sample-app-clone-react-hhb2atqsn-chetan-01-sources-projects.vercel.app/widget?${query}`;
   document.body.appendChild(iframe);
 
   // Toggle chat visibility
