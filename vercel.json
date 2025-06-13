@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/cometchat-widget.js",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
@@ -16,6 +16,12 @@
           "value": "*"
         }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/cometchat-widget.js",
+      "destination": "/cometchat-widget.js"
     }
   ]
 }
