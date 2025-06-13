@@ -52,7 +52,7 @@
 
   // Append URL params to iframe src
   const query = new URLSearchParams({ appId, region, authKey, uid }).toString();
-  iframe.src = `https://bbed-2409-40c0-1038-91e2-d0eb-6b89-6844-e147.ngrok-free.app/widget?${query}`;
+  iframe.src = `https://sample-app-clone-react-hhb2atqsn-chetan-01-sources-projects.vercel.app//widget?${query}`;
   document.body.appendChild(iframe);
 
   // Toggle chat visibility
