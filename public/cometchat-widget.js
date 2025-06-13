@@ -1,18 +1,25 @@
 (function () {
+  console.log("✅ cometchat-widget.js loaded");
 
-    console.log("✅ cometchat-widget.js loaded");
+  // 1. Prefer settings from window.CometChatWidgetSettings
   const settings = window.CometChatWidgetSettings || {};
 
-  const appId = settings.appId || "";
-  const region = settings.region || "";
-  const authKey = settings.authKey || "";
-  const uid = settings.uid || "";
+  // 2. Parse from URL if not available in settings
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const appId = settings.appId || urlParams.get("appId") || "";
+  const region = settings.region || urlParams.get("region") || "";
+  const authKey = settings.authKey || urlParams.get("authKey") || "";
+  const uid = settings.uid || urlParams.get("uid") || "";
 
   if (!appId || !region || !authKey || !uid) {
-    console.error("CometChat Widget: Missing configuration!");
+    console.error("❌ CometChat Widget: Missing configuration!");
     return;
   }
 
+  console.log("✅ Using Config -", { appId, region, authKey, uid });
+
+  // Create launcher button
   const launcher = document.createElement("div");
   launcher.id = "cometchat-launcher";
   launcher.innerText = "💬 Chat";
@@ -29,6 +36,7 @@
   launcher.style.zIndex = "999999";
   document.body.appendChild(launcher);
 
+  // Create iframe for chat widget
   const iframe = document.createElement("iframe");
   iframe.id = "cometchat-iframe";
   iframe.style.position = "fixed";
@@ -42,12 +50,12 @@
   iframe.style.zIndex = "999998";
   iframe.style.display = "none";
 
+  // Append URL params to iframe src
   const query = new URLSearchParams({ appId, region, authKey, uid }).toString();
-
-  console.log("query params found",query)
-  iframe.src = `https://sample-app-clone-react-hhb2atqsn-chetan-01-sources-projects.vercel.app/widget?${query}`;
+  iframe.src = `https://bbed-2409-40c0-1038-91e2-d0eb-6b89-6844-e147.ngrok-free.app/widget?${query}`;
   document.body.appendChild(iframe);
 
+  // Toggle chat visibility
   launcher.onclick = () => {
     iframe.style.display = iframe.style.display === "none" ? "block" : "none";
   };
